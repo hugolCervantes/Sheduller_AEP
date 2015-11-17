@@ -42,7 +42,12 @@
 /* Includes */
 /*============================================================================*/
 #include "MPC5606B.h"
-
+#include "stdtypedef.h"
+#include "task.h"
+#include "STM_Timer.h"
+#include "OS_Init.h"
+#include "IntcInterrupts.h"
+#include "Leds.h"
 
 /* Constants and types  */
 /*============================================================================*/
@@ -86,7 +91,15 @@
 
 
 
+
 int main(void) {
+	//initializations
+	Init_STM();
+	Init_Leds();
+	INTC_InstallINTCInterruptHandler(Interrupt_Flag,30,1);
+
+	Run_Tasks();
+
 
 }
 

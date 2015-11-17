@@ -8,6 +8,8 @@
 C_SRCS_QUOTED += \
 "../Sources/Exceptions.c" \
 "../Sources/IntcInterrupts.c" \
+"../Sources/OS_Init.c" \
+"../Sources/STM_Timer.c" \
 "../Sources/ivor_branch_table.c" \
 "../Sources/kernel.c" \
 "../Sources/main.c" \
@@ -16,6 +18,8 @@ C_SRCS_QUOTED += \
 C_SRCS += \
 ../Sources/Exceptions.c \
 ../Sources/IntcInterrupts.c \
+../Sources/OS_Init.c \
+../Sources/STM_Timer.c \
 ../Sources/ivor_branch_table.c \
 ../Sources/kernel.c \
 ../Sources/main.c \
@@ -24,6 +28,8 @@ C_SRCS += \
 OBJS += \
 ./Sources/Exceptions_c.obj \
 ./Sources/IntcInterrupts_c.obj \
+./Sources/OS_Init_c.obj \
+./Sources/STM_Timer_c.obj \
 ./Sources/ivor_branch_table_c.obj \
 ./Sources/kernel_c.obj \
 ./Sources/main_c.obj \
@@ -32,6 +38,8 @@ OBJS += \
 OBJS_QUOTED += \
 "./Sources/Exceptions_c.obj" \
 "./Sources/IntcInterrupts_c.obj" \
+"./Sources/OS_Init_c.obj" \
+"./Sources/STM_Timer_c.obj" \
 "./Sources/ivor_branch_table_c.obj" \
 "./Sources/kernel_c.obj" \
 "./Sources/main_c.obj" \
@@ -40,6 +48,8 @@ OBJS_QUOTED += \
 C_DEPS += \
 ./Sources/Exceptions_c.d \
 ./Sources/IntcInterrupts_c.d \
+./Sources/OS_Init_c.d \
+./Sources/STM_Timer_c.d \
 ./Sources/ivor_branch_table_c.d \
 ./Sources/kernel_c.d \
 ./Sources/main_c.d \
@@ -48,6 +58,8 @@ C_DEPS += \
 OBJS_OS_FORMAT += \
 ./Sources/Exceptions_c.obj \
 ./Sources/IntcInterrupts_c.obj \
+./Sources/OS_Init_c.obj \
+./Sources/STM_Timer_c.obj \
 ./Sources/ivor_branch_table_c.obj \
 ./Sources/kernel_c.obj \
 ./Sources/main_c.obj \
@@ -56,6 +68,8 @@ OBJS_OS_FORMAT += \
 C_DEPS_QUOTED += \
 "./Sources/Exceptions_c.d" \
 "./Sources/IntcInterrupts_c.d" \
+"./Sources/OS_Init_c.d" \
+"./Sources/STM_Timer_c.d" \
 "./Sources/ivor_branch_table_c.d" \
 "./Sources/kernel_c.d" \
 "./Sources/main_c.d" \
@@ -84,9 +98,25 @@ Sources/IntcInterrupts_c.obj: ../Sources/IntcInterrupts.c
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/ivor_branch_table_c.obj: ../Sources/ivor_branch_table.c
+Sources/OS_Init_c.obj: ../Sources/OS_Init.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #3 $<'
+	@echo 'Invoking: PowerPC Compiler'
+	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/OS_Init.args" -o "Sources/OS_Init_c.obj" "$<" -MD -gccdep
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Sources/STM_Timer_c.obj: ../Sources/STM_Timer.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #4 $<'
+	@echo 'Invoking: PowerPC Compiler'
+	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/STM_Timer.args" -o "Sources/STM_Timer_c.obj" "$<" -MD -gccdep
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Sources/ivor_branch_table_c.obj: ../Sources/ivor_branch_table.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #5 $<'
 	@echo 'Invoking: PowerPC Compiler'
 	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/ivor_branch_table.args" -o "Sources/ivor_branch_table_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -94,7 +124,7 @@ Sources/ivor_branch_table_c.obj: ../Sources/ivor_branch_table.c
 
 Sources/kernel_c.obj: ../Sources/kernel.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #4 $<'
+	@echo 'Executing target #6 $<'
 	@echo 'Invoking: PowerPC Compiler'
 	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/kernel.args" -o "Sources/kernel_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -102,7 +132,7 @@ Sources/kernel_c.obj: ../Sources/kernel.c
 
 Sources/main_c.obj: ../Sources/main.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #5 $<'
+	@echo 'Executing target #7 $<'
 	@echo 'Invoking: PowerPC Compiler'
 	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/main.args" -o "Sources/main_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -110,7 +140,7 @@ Sources/main_c.obj: ../Sources/main.c
 
 Sources/task_c.obj: ../Sources/task.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #6 $<'
+	@echo 'Executing target #8 $<'
 	@echo 'Invoking: PowerPC Compiler'
 	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/task.args" -o "Sources/task_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

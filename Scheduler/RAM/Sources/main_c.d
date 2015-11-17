@@ -12,4 +12,9 @@ Sources/main_c.obj: C:\Users\Isa\Documents\Scheduler_AEP\trunk\Scheduler\Sources
 	C:\Freescale\CW\ MCU\ v10.6\MCU\PA_Support\ewl\EWL_C\include\os_enum.h \
 	C:\Freescale\CW\ MCU\ v10.6\MCU\PA_Support\ewl\EWL_C\include\cstdint \
 	C:\Freescale\CW\ MCU\ v10.6\MCU\PA_Support\ewl\EWL_C\include\limits_api.h \
-	C:\Freescale\CW\ MCU\ v10.6\MCU\PA_Support\ewl\EWL_C\include\ewl_lib_ext1.h 
+	C:\Freescale\CW\ MCU\ v10.6\MCU\PA_Support\ewl\EWL_C\include\ewl_lib_ext1.h \
+	C:\Users\Isa\Documents\Scheduler_AEP\trunk\Scheduler\Project_Headers\stdtypedef.h \
+	C:\Users\Isa\Documents\Scheduler_AEP\trunk\Scheduler\Project_Headers\task.h \
+	C:\Users\Isa\Documents\Scheduler_AEP\trunk\Scheduler\Project_Headers\STM_Timer.h \
+	C:\Users\Isa\Documents\Scheduler_AEP\trunk\Scheduler\Project_Headers\OS_Init.h \
+	C:\Users\Isa\Documents\Scheduler_AEP\trunk\Scheduler\Project_Headers\IntcInterrupts.h 

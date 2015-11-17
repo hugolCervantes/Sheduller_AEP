@@ -43,10 +43,25 @@
 
 /* Includes */
 /*============================================================================*/
-
+#include "stdtypedef.h"
 
 /* Constants and types */
 /*============================================================================*/
+typedef struct{
+	void (* tasks)();
+	T_BIT_STRUCT period;
+	T_BIT_STRUCT offset;
+	
+}s_task; 
+
+typedef enum{
+	task1,
+	task2,
+	task3,
+	task4,
+	num_tasks
+}e_task;
+
 
 
 /* Exported Variables */
@@ -55,7 +70,12 @@
 
 /* Exported functions prototypes */
 /*============================================================================*/
-
+void Run_Tasks();
+void task_led1();
+void task_led2();
+void task_led3();
+void task_led4();
+void Interrupt_Flag(void);
 #endif /* TASK_H_ */  /* Notice: the file ends with a blank new line to avoid compiler warnings */
 
 

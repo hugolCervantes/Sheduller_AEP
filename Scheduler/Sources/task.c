@@ -41,7 +41,10 @@
 
 /* Includes */
 /*============================================================================*/
-
+#include "task.h"
+#include "OS_Init.h"
+#include "STM_Timer.h"////8
+#include "Leds.h"
 
 
 /* Constants and types  */
@@ -52,7 +55,9 @@
 /* Variables */
 /*============================================================================*/
 
-
+T_UBYTE rub_cont = 0;
+T_ULONG raul_dyn[num_tasks];
+T_UBYTE rub_tickFlag;///8
 
 /* Private functions prototypes */
 /*============================================================================*/
@@ -68,17 +73,66 @@
 /* Private functions */
 /*============================================================================*/
 
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-
 /* Exported functions */
 /*============================================================================*/
+/*  Name task	   |Period	   |Offset			*/
+const s_task task_list[num_tasks] = {
+	{task_led1,		 250,			10},
+	{task_led2,		 500,			20},
+	{task_led3,		1000,			30},
+	{task_led4,		2000,			40}
+};
 
+void Run_Tasks()
+{
+	while(1){
+		if(rub_tickFlag)
+		{
+			rub_tickFlag = 0;
+			for(rub_cont = 0; rub_cont < num_tasks; rub_cont++)
+			{
+				if(raul_dyn[rub_cont] > 0)
+				{
+					raul_dyn[rub_cont]--;
+				}
+				else
+				{
+					raul_dyn[rub_cont] = task_list[rub_cont].period;
+					task_list[rub_cont].tasks();
+				}
+			}
+		}
+	}
+}
+
+void task_led1(){
+	Led_Toggle(68);
+}
+
+void task_led2(){
+	Led_Toggle(69);
+}
+
+void task_led3(){
+	Led_Toggle(70);
+}
+
+void task_led4(){
+	Led_Toggle(71);
+}
+
+
+
+void Interrupt_Flag(void)///8
+{ 
+	if(STM.CH[0].CIR.B.CIF){
+		rub_tickFlag = 1;
+		STM.CNT.R = 0; 				//Init in 0
+		STM.CH[0].CIR.B.CIF = 1;	//Clear interrupt flag		
+	}
+
+}
 
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
+
