@@ -6,7 +6,7 @@
 /*!
  * $Source: kernel.c $
  * $Revision: version 1.0 $
- * $Author: María Isamar Saldaña Gálvez / Oswaldo García Cervantes $
+ * $Author:  Oswaldo García Cervantes / María Isamar Saldaña Gálvez 
  * $Date: 13/11/15 $
  */
 /*============================================================================*/
@@ -39,30 +39,26 @@
   ============================================================================*/
 
 /* Includes */
+#include "Mal\kernel.h"
+
 /*============================================================================*/
-
-
 
 /* Constants and types  */
 /*============================================================================*/
 
-
-
 /* Variables */
 /*============================================================================*/
 
-
+T_UBYTE rub_cont = 0;
+T_ULONG raul_dyn[num_tasks];
+T_UBYTE rub_tickFlag;///8
+T_ULONG raul_dyn[num_tasks];
 
 /* Private functions prototypes */
 /*============================================================================*/
 
-
-
 /* Inline functions */
 /*============================================================================*/
-
-
-
 
 /* Private functions */
 /*============================================================================*/
@@ -74,6 +70,44 @@
  a certain activation of the motors.
  \returns TRUE if the activation is allowed, FALSE if not
 */
+
+//Function for run the tasks
+void Run_Tasks(void)
+{
+	for(rub_cont = 0; rub_cont < num_tasks; rub_cont++)
+	{
+		raul_dyn[rub_cont] = task_list[rub_cont].offset;       //Init the offset
+	}
+	while(1){
+		if(rub_tickFlag)
+		{
+			rub_tickFlag = 0;
+			for(rub_cont = 0; rub_cont < num_tasks; rub_cont++)
+			{
+				if(raul_dyn[rub_cont] > 0)
+				{
+					raul_dyn[rub_cont]--;
+				}
+				else
+				{
+					raul_dyn[rub_cont] = task_list[rub_cont].period;
+					task_list[rub_cont].tasks();
+				}
+			}
+		}
+	}
+}
+
+//Function for configuration the interruption
+void Interrupt_Flag(void)
+{ 
+	if(STM.CH[0].CIR.B.CIF){
+		rub_tickFlag = 1;
+		STM.CNT.R = 0; 				//Init in 0 the timer STM
+		STM.CH[0].CIR.B.CIF = 1;	//Clear interrupt flag		
+	}
+
+}
 
 
 

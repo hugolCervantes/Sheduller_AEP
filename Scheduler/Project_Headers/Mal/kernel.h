@@ -6,12 +6,12 @@
 /*!
  * $Source: kernel.h $
  * $Revision: version 1.0 $
- * $Author: María Isamar Saldaña Gálvez / Oswaldo García Cervantes $
- * $Date: 13/11/15 $
+ * $Author: Oswaldo García Cervantes && María Isamar Saldaña Gálvez 
+ * $Date: 17/11/15 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
-/*
+/*This is the kernel of document
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2015                                  */
@@ -42,6 +42,9 @@
 
 /* Includes */
 /*============================================================================*/
+#include "Mal\Mal_headers.h"
+#include "Hal\Hal_headers.h"////8
+#include "Application\Application_headers.h"
 
 
 /* Constants and types */
@@ -53,6 +56,8 @@
 
 
 /* Exported functions prototypes */
+void Interrupt_Flag(void);
+void Run_Tasks(void);
 /*============================================================================*/
 
 #endif /* KERNEL_H_ */  /* Notice: the file ends with a blank new line to avoid compiler warnings */

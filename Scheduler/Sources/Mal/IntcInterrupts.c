@@ -10,7 +10,51 @@
  *
  * VERSION: 1.2     
 */
+/* Intclnterrupts.c
+ *
+ *  Created on: Nov 17, 2015
+ *      Author: emma
+ */
 
+/*============================================================================*/
+/*                        I BS SOFTWARE GROUP                                 */
+/*============================================================================*/
+/*                        OBJECT SPECIFICATION                                */
+/*============================================================================*/
+/*!
+ * $Source: Intclnterrupts.h $
+ * $Revision: version 1.0 $
+ * $Author: Oswaldo García Cervantes && María Isamar Saldaña Gálvez 
+ * $Date: 17/11/15 $
+ */
+/*============================================================================*/
+/* DESCRIPTION :                                                              */
+/*In this part of code, you can see the interrupst of the MCU
+*/
+/*============================================================================*/
+/* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2015                                  */
+/* AUTOMOTIVE GROUP, Interior Division, Body and Security                     */
+/* ALL RIGHTS RESERVED                                                        */
+/*                                                                            */
+/* The reproduction, transmission, or use of this document or its content is  */
+/* not permitted without express written authority. Offenders will be liable  */
+/* for damages.                                                               */
+/* All rights, including rights created by patent grant or registration of a  */
+/* utility model or design, are reserved.                                     */
+/*                                                                            */
+/*============================================================================*/
+/*============================================================================*/
+/*                    REUSE HISTORY - taken over from                         */
+/*============================================================================*/
+/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
+/*----------------------------------------------------------------------------*/
+/*                     | Scheduler          | 1.0                             */
+/*============================================================================*/
+/*                               OBJECT HISTORY                               */
+/*============================================================================*/
+/*
+ * $Log: Leds.h  $
+  ============================================================================*/
 /*---------------------------------------------------------------------------*/
 /* By default we do not use nested interrupts, interrupts are handled in C.  */
 /* In case you want to use nested interrupts, set INTC_NESTED_INTERRUPT.     */
@@ -26,9 +70,9 @@
 /* Includes                                                                  */
 /*---------------------------------------------------------------------------*/
 
-#include "MPC5606B.h"         /* MCU platform development header       */
+#include "Mal\MPC5606B.h"         /* MCU platform development header       */
 
-#include "IntcInterrupts.h"     /* Implement functions from this file */
+#include "Mal\IntcInterrupts.h"     /* Implement functions from this file */
 
 /*---------------------------------------------------------------------------*/
 /* Inline Assembler Defines                                                  */

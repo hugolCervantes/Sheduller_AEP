@@ -70,7 +70,7 @@
 #ifndef _JDP_H_
 #define _JDP_H_
 
-#include "typedefs.h"
+#include "Mal\typedefs.h"
 
 #ifdef  __cplusplus
 extern "C" {

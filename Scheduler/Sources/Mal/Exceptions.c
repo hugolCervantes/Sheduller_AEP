@@ -1,3 +1,12 @@
+/** 
+ * FILE: Exceptions.c
+ *
+ *  DESCRIPTION: Setup of IVPR to point to the EXCEPTION_HANDLERS memory area 
+ *               defined in the linker command file.
+ *               Default setup of the e200z0h IVORxx registers.
+ *
+ * VERSION: 1.2    
+*/
 /*
  * Leds.h
  *
@@ -43,33 +52,54 @@
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
 /*
- * $Log: Leds.h  
+ * $Log: Leds.h  $
   ============================================================================*/
-#ifndef LEDS_H_
-#define LEDS_H_
+/*----------------------------------------------------------------------------*/
+/* Includes                                                                   */
+/*----------------------------------------------------------------------------*/
 
 /* Includes */
 /*============================================================================*/
-#include "Mal\Mal_headers.h"
-#include "Application\task.h"
-#include "Mal\stdtypedef.h"
+#include "Mal\Exceptions.h" /* Implement functions from this file */
 
 /* Constants and types */
 /*============================================================================*/
-#define LED1 68
-#define LED2 69
-#define LED3 70
-#define LED4 71
+
 
 /* Exported Variables */
 /*============================================================================*/
 
 
 /* Exported functions prototypes */
+/*----------------------------------------------------------------------------*/
+/* Function Implementations                                                   */
+/*----------------------------------------------------------------------------*/
 
-void Init_Leds (void);
-void Led_Toggle(T_SBYTE lsb_led);
+#pragma push /* Save the current state */
+/* Symbol EXCEPTION_HANDLERS is defined in the application linker command file (.lcf) 
+   It is defined to the start of the code memory area used for the .__exception_handlers section. 
+*/
+/*lint -esym(752, EXCEPTION_HANDLERS) */
+__declspec (section ".__exception_handlers") extern long EXCEPTION_HANDLERS;  
+#pragma force_active on
+#pragma function_align 16 /* We use 16 bytes alignment for Exception handlers */
+__declspec(interrupt)
+__declspec (section ".__exception_handlers")
+void EXCEP_DefaultExceptionHandler(void)
+{
 
-/*============================================================================*/
+}
+#pragma force_active off
+#pragma pop
 
-#endif /* LEDS_H_ */    /* Notice: the file ends with a blank new line to avoid compiler warnings */
+__asm void EXCEP_InitExceptionHandlers(void)
+{
+nofralloc
+
+    /* Set the IVPR to the Exception Handlers memory area defined in the lcf file */ 
+    lis r0, EXCEPTION_HANDLERS@h
+    ori r0, r0, EXCEPTION_HANDLERS@l
+    mtivpr  r0
+    /* IVORxx registers are "hard-wired" in the e200z0 and z0h cores */
+    blr
+}

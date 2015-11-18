@@ -7,56 +7,56 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
 "../Sources/Mal/Exceptions.c" \
-"../Sources/Mal/Init_all_system.c" \
 "../Sources/Mal/IntcInterrupts.c" \
+"../Sources/Mal/OS_Init.c" \
 "../Sources/Mal/STM_Timer.c" \
 "../Sources/Mal/ivor_branch_table.c" \
 "../Sources/Mal/kernel.c" \
 
 C_SRCS += \
 ../Sources/Mal/Exceptions.c \
-../Sources/Mal/Init_all_system.c \
 ../Sources/Mal/IntcInterrupts.c \
+../Sources/Mal/OS_Init.c \
 ../Sources/Mal/STM_Timer.c \
 ../Sources/Mal/ivor_branch_table.c \
 ../Sources/Mal/kernel.c \
 
 OBJS += \
 ./Sources/Mal/Exceptions_c.obj \
-./Sources/Mal/Init_all_system_c.obj \
 ./Sources/Mal/IntcInterrupts_c.obj \
+./Sources/Mal/OS_Init_c.obj \
 ./Sources/Mal/STM_Timer_c.obj \
 ./Sources/Mal/ivor_branch_table_c.obj \
 ./Sources/Mal/kernel_c.obj \
 
 OBJS_QUOTED += \
 "./Sources/Mal/Exceptions_c.obj" \
-"./Sources/Mal/Init_all_system_c.obj" \
 "./Sources/Mal/IntcInterrupts_c.obj" \
+"./Sources/Mal/OS_Init_c.obj" \
 "./Sources/Mal/STM_Timer_c.obj" \
 "./Sources/Mal/ivor_branch_table_c.obj" \
 "./Sources/Mal/kernel_c.obj" \
 
 C_DEPS += \
 ./Sources/Mal/Exceptions_c.d \
-./Sources/Mal/Init_all_system_c.d \
 ./Sources/Mal/IntcInterrupts_c.d \
+./Sources/Mal/OS_Init_c.d \
 ./Sources/Mal/STM_Timer_c.d \
 ./Sources/Mal/ivor_branch_table_c.d \
 ./Sources/Mal/kernel_c.d \
 
 OBJS_OS_FORMAT += \
 ./Sources/Mal/Exceptions_c.obj \
-./Sources/Mal/Init_all_system_c.obj \
 ./Sources/Mal/IntcInterrupts_c.obj \
+./Sources/Mal/OS_Init_c.obj \
 ./Sources/Mal/STM_Timer_c.obj \
 ./Sources/Mal/ivor_branch_table_c.obj \
 ./Sources/Mal/kernel_c.obj \
 
 C_DEPS_QUOTED += \
 "./Sources/Mal/Exceptions_c.d" \
-"./Sources/Mal/Init_all_system_c.d" \
 "./Sources/Mal/IntcInterrupts_c.d" \
+"./Sources/Mal/OS_Init_c.d" \
 "./Sources/Mal/STM_Timer_c.d" \
 "./Sources/Mal/ivor_branch_table_c.d" \
 "./Sources/Mal/kernel_c.d" \
@@ -76,19 +76,19 @@ Sources/Mal/%.d: ../Sources/Mal/%.c
 	
 	@echo ' '
 
-Sources/Mal/Init_all_system_c.obj: ../Sources/Mal/Init_all_system.c
+Sources/Mal/IntcInterrupts_c.obj: ../Sources/Mal/IntcInterrupts.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #3 $<'
 	@echo 'Invoking: PowerPC Compiler'
-	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/Mal/Init_all_system.args" -o "Sources/Mal/Init_all_system_c.obj" "$<" -MD -gccdep
+	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/Mal/IntcInterrupts.args" -o "Sources/Mal/IntcInterrupts_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Mal/IntcInterrupts_c.obj: ../Sources/Mal/IntcInterrupts.c
+Sources/Mal/OS_Init_c.obj: ../Sources/Mal/OS_Init.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #4 $<'
 	@echo 'Invoking: PowerPC Compiler'
-	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/Mal/IntcInterrupts.args" -o "Sources/Mal/IntcInterrupts_c.obj" "$<" -MD -gccdep
+	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/Mal/OS_Init.args" -o "Sources/Mal/OS_Init_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
 	@echo ' '
 

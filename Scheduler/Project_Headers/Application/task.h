@@ -6,7 +6,7 @@
 /*!
  * $Source: task.h $
  * $Revision: version 1.0 $
- * $Author: María Isamar Saldaña Gálvez / Oswaldo García Cervantes $
+ * $Author: María Isamar Saldaña Gálvez / Oswaldo García Cervantes 
  * $Date: 13/11/15 $
  */
 /*============================================================================*/
@@ -43,7 +43,8 @@
 
 /* Includes */
 /*============================================================================*/
-#include "stdtypedef.h"
+#include "Mal\stdtypedef.h"
+#include "Hal\Leds.h"
 
 /* Constants and types */
 /*============================================================================*/
@@ -55,10 +56,14 @@ typedef struct{
 }s_task; 
 
 typedef enum{
+	//Add a new task here
 	task1,
 	task2,
 	task3,
 	task4,
+	
+	
+	//Never dont modifiqued this part, only up 
 	num_tasks
 }e_task;
 
@@ -66,16 +71,15 @@ typedef enum{
 
 /* Exported Variables */
 /*============================================================================*/
-
+extern const s_task task_list[num_tasks];
 
 /* Exported functions prototypes */
 /*============================================================================*/
-void Run_Tasks();
-void task_led1();
-void task_led2();
-void task_led3();
-void task_led4();
-void Interrupt_Flag(void);
+void task_led1(void);
+void task_led2(void);
+void task_led3(void);
+void task_led4(void);
+
 #endif /* TASK_H_ */  /* Notice: the file ends with a blank new line to avoid compiler warnings */
 
 
