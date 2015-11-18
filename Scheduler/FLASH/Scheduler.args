@@ -7,10 +7,10 @@
 "./Sources/Mal/kernel_c.obj"
 "./Sources/Mal/ivor_branch_table_c.obj"
 "./Sources/Mal/STM_Timer_c.obj"
+"./Sources/Mal/OS_Init_c.obj"
 "./Sources/Mal/IntcInterrupts_c.obj"
-"./Sources/Mal/Init_all_system_c.obj"
-"./Sources/Mal/Exceptions_c.obj"
 "./Sources/main_c.obj"
+"./Sources/Exceptions_c.obj"
 -sym dwarf-2
 -sym full
 -msgstyle parseable
