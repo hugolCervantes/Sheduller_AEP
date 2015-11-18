@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Hal/Leds_c.obj: ../Sources/Hal/Leds.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #9 $<'
+	@echo 'Executing target #8 $<'
 	@echo 'Invoking: PowerPC Compiler'
 	"$(PAToolsDirEnv)/mwcceppc" @@"Sources/Hal/Leds.args" -o "Sources/Hal/Leds_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
