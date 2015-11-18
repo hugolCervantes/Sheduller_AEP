@@ -11,9 +11,9 @@
  *  You can add needed hardware initializations here.
  */
 
-#include "Exceptions.h"     /* IVPR and default exception handlers setup */
-#include "IntcInterrupts.h" /* INTC Interrupts Requests configuration */
-#include "MPC5606B_HWInit.h"
+#include "Mal\Exceptions.h"     /* IVPR and default exception handlers setup */
+#include "Mal\IntcInterrupts.h" /* INTC Interrupts Requests configuration */
+#include "Mal\MPC5606B_HWInit.h"
 
 #pragma section code_type ".init"
 

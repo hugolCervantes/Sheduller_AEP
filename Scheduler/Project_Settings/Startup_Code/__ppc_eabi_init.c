@@ -98,7 +98,7 @@ HISTORY
 #pragma only_std_keywords off
 
 #define ALLOC_ADDITIONAL_HEAPS 0
-#include "MPC5606B.h"
+#include "Mal\MPC5606B.h"
 #define FLASH_REG CFLASH.PFCR0.R
 #define FLASH_DATA 0x108580ED
 

@@ -4,9 +4,9 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- * $Source: main.c $
- * $Revision: 1.0 $
- * $Author: María Isamar Saldaña Gálvez / Oswaldo García Cervantes $
+ * $Source: main.c 
+ * $Revision: 1.0 
+ * $Author: Oswaldo García Cervantes / María Isamar Saldaña Gálvez 
  * $Date: 13/11/15 $
  */
 /*============================================================================*/
@@ -41,33 +41,25 @@
 
 /* Includes */
 /*============================================================================*/
-#include "MPC5606B.h"
-#include "stdtypedef.h"
-#include "task.h"
-#include "STM_Timer.h"
-#include "OS_Init.h"
-#include "IntcInterrupts.h"
-#include "Leds.h"
+
+#include "Application\Application_headers.h"
+#include "Hal\Hal_headers.h"
+#include "Mal\Mal_headers.h" 
 
 /* Constants and types  */
 /*============================================================================*/
-
 
 
 /* Variables */
 /*============================================================================*/
 
 
-
 /* Private functions prototypes */
 /*============================================================================*/
 
 
-
 /* Inline functions */
 /*============================================================================*/
-
-
 
 
 /* Private functions */
@@ -85,23 +77,16 @@
 /* Exported functions */
 /*============================================================================*/
 
-
-
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
 
-
-
-
 int main(void) {
-	//initializations
-	Init_STM();
-	Init_Leds();
-	INTC_InstallINTCInterruptHandler(Interrupt_Flag,30,1);
 
-	Run_Tasks();
-
-
+    Init_system();   // Function that init all system
+    Run_system();   // Function that do run all system
 }
 
+/* Exported functions */
+/*============================================================================*/
 
+ /* Notice: the file ends with a blank new line to avoid compiler warnings */
 

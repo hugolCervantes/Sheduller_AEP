@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 12
+#Progress monitor hint: 13
 first : all
 -include ../makefile.init
 
@@ -15,6 +15,9 @@ RM := "$(GNU_Make_Install_DirEnv)/rm" -f
 -include sources.mk
 -include subdir.mk
 -include Sources/subdir.mk
+-include Sources/Mal/subdir.mk
+-include Sources/Hal/subdir.mk
+-include Sources/Application/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk
 -include objects.mk
 
@@ -73,7 +76,7 @@ all: warning-messages explicit-dependencies Scheduler.elf
 # Tool invocations
 Scheduler.elf: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/MPC5606B_RAM.lcf
 	@echo 'Building target: $@'
-	@echo 'Executing target #13 $@'
+	@echo 'Executing target #14 $@'
 	@echo 'Invoking: PowerPC Linker'
 	"$(PAToolsDirEnv)/mwldeppc" -o "Scheduler.elf" @@"Scheduler.args"  $(USER_OBJS_QUOTED)
 	@echo 'Finished building target: $@'
