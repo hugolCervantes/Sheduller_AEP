@@ -75,10 +75,15 @@ extern const s_task task_list[num_tasks];
 
 /* Exported functions prototypes */
 /*============================================================================*/
-void task_led1(void);
-void task_led2(void);
-void task_led3(void);
-void task_led4(void);
+void task1_Pb_Up(void);
+
+void task2_Pb_Down(void);
+
+void task3_Pb_AntiP(void);
+
+void task4_State_Machine(void);
+
+T_UBYTE PButt_Press(T_UBYTE);
 
 #endif /* TASK_H_ */  /* Notice: the file ends with a blank new line to avoid compiler warnings */
 

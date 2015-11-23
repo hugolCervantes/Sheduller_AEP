@@ -4,6 +4,7 @@
 "./Project_Settings/Startup_Code/MPC5606B_HWInit_c.obj"
 "./Sources/Application/task_c.obj"
 "./Sources/Hal/Leds_c.obj"
+"./Sources/Hal/Internal_PButt_c.obj"
 "./Sources/Mal/kernel_c.obj"
 "./Sources/Mal/ivor_branch_table_c.obj"
 "./Sources/Mal/STM_Timer_c.obj"

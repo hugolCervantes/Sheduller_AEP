@@ -69,7 +69,8 @@
 
 void Init_Leds (void);
 void Led_Toggle(T_SBYTE lsb_led);
-
+void Led_Off(T_SBYTE lsb_led);
+void Led_On(T_SBYTE lsb_led);
 /*============================================================================*/
 
 #endif /* LEDS_H_ */    /* Notice: the file ends with a blank new line to avoid compiler warnings */

@@ -74,13 +74,20 @@
 //Function for configuration clock STM
 void Init_STM(void)
 {
-	STM.CNT.R = 0;                      // Count init in 0
-	STM.CH[TM_1MS].CMP.R = 0xFA00;     // 1msec
-	STM.CH[TM_1MS].CCR.B.CEN = 1;     // Activate comparator
-	STM.CR.B.FRZ = 1;                // 0: timer runs in debug mode
-	STM.CR.B.CPS = 0;               // Prescaler
-	STM.CR.B.TEN = 1;              // Activate timer
-	INTC.CPR.R = 0;               //Activate interrupts
+	STM.CNT.R = 0;                      	// Count init in 0
+	 
+	STM.CH[TM_1MS].CMP.R = 0xFA00;     		// 1msec
+	STM.CH[TM_1MS].CCR.B.CEN = 1;     		// Activate comparator
+	STM.CH[TM_400MS].CMP.R = 0x186A001;		//400ms
+	STM.CH[TM_400MS].CCR.B.CEN = 1;
+	STM.CH[TM_500MS].CMP.R = 0x1E84801;		//500ms
+	STM.CH[TM_500MS].CCR.B.CEN = 1;
+	STM.CH[TM_5S].CMP.R = 0x1312D001;		//5 sec
+	STM.CH[TM_5S].CCR.B.CEN = 1;
+	STM.CR.B.FRZ = 1;                		// 0: timer runs in debug mode
+	STM.CR.B.CPS = 0;               		// Prescaler
+	STM.CR.B.TEN = 1;              			// Activate timer
+	INTC.CPR.R = 0;                         			//Activate interrupts
 }
 
 

@@ -9,8 +9,12 @@
 
 void Init_system(void)
 {
-	Init_STM();
+	Init_PButt();
 	Init_Leds();
+	Init_STM();
+
+	
+	
 	INTC_InstallINTCInterruptHandler(Interrupt_Flag,30,1);
 
 }

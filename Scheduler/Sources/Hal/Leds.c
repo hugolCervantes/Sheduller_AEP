@@ -85,14 +85,22 @@ void Init_Leds(void)
 {
 	T_UBYTE lub_count;
 	
-	ME.RUN[0].R = 0x001F0074;       	/* RUN0 cfg: 16MHzIRCON,OSC0ON,PLL0ON,syclk=PLL */
-	ME.RUNPC[0].R = 0x00000010; 	  	/* Peri. Cfg. 0 settings: only run in RUN0 mode */
-	ME.PCTL[68].R = 0x0000;         	/* MPC56xxB/S SIUL:  select ME.RUNPC[0] */	
+	//ME.RUN[0].R = 0x001F0074;       	/* RUN0 cfg: 16MHzIRCON,OSC0ON,PLL0ON,syclk=PLL */
+	//ME.RUNPC[0].R = 0x00000010; 	  	/* Peri. Cfg. 0 settings: only run in RUN0 mode */
+	//ME.PCTL[68].R = 0x0000;         	/* MPC56xxB/S SIUL:  select ME.RUNPC[0] */	
 	
-	ME.MCTL.R = 0x40005AF0;         	/* Enter RUN0 Mode & Key */
-	ME.MCTL.R = 0x4000A50F;         	/* Enter RUN0 Mode & Inverted Key */  
+	//ME.MCTL.R = 0x40005AF0;         	/* Enter RUN0 Mode & Key */
+	//ME.MCTL.R = 0x4000A50F;         	/* Enter RUN0 Mode & Inverted Key */  
 	
-	for(lub_count = LED1; lub_count <= LED4; lub_count++)
+	/* Window Leds*/
+	for(lub_count = 0; lub_count <= 9; lub_count++)
+	{
+		SIU.PCR[lub_count].R = 0x0201;
+		SIU.GPDO[lub_count].B.PDO = 1;
+	}	
+	
+	/* Indicators Leds */
+	for(lub_count = 16; lub_count <= 17; lub_count++)
 	{
 		SIU.PCR[lub_count].R = 0x0201;
 		SIU.GPDO[lub_count].B.PDO = 1;
@@ -105,6 +113,15 @@ void Led_Toggle(T_SBYTE lsb_led)
 	SIU.GPDO[lsb_led].B.PDO ^= 1;
 }
 
+void Led_Off(T_SBYTE lsb_led)
+{
+	SIU.GPDO[lsb_led].B.PDO = 0;
+}
+
+void Led_On(T_SBYTE lsb_led)
+{
+	SIU.GPDO[lsb_led].B.PDO = 1;
+}
 /* Exported functions */
 /*============================================================================*/
 
