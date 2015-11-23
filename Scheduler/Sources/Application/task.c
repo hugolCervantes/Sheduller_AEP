@@ -50,8 +50,9 @@
 /* Variables */
 /*============================================================================*/
 T_SBYTE rsb_Bttn = 0;
-T_UBYTE rsb_CountMs = 0;
+T_SBYTE rsb_CountMs = 0;
 T_SBYTE rsb_Led = 0;
+
 
 T_UBYTE rub_downPress = 0;
 T_UBYTE rub_downPress_v = 0;
@@ -66,6 +67,7 @@ T_UBYTE rub_bandU_m = 0;
 T_UBYTE rub_antipPress = 0;
 T_UBYTE rub_antipPress_v = 0;
 T_UBYTE rub_countFor = 0;
+T_UBYTE rub_cont5s = 0;
 
 
 /* Private functions prototypes */
@@ -102,7 +104,7 @@ const s_task task_list[num_tasks] = {
 /*Tasks of the scheduller*/
 
 void task1_Pb_Up(void){    			//Valid Push Button Up  
-	if( !PButt_Press(PBUTT_UP) && rub_upPress == 1 && rub_antipPress_v == 0)
+	if( !PButt_Press(PBUTT_UP) && rub_upPress == 1 && rub_antipPress_v == 0 && rub_antipPress_v == 0)
 		{
 			rub_upPress_v = 1;
 			rub_upPress = 0;
@@ -121,9 +123,8 @@ void task1_Pb_Up(void){    			//Valid Push Button Up
 		if(rub_upPress_v == 1 && PButt_Press(PBUTT_UP) && rub_countU_man < 50 && rub_bandU_m == 0)//up auto
 		{//////////////
 			rub_upPress_v = 0;
-			//rub_countD_man++;
 			rsb_Bttn = 'b';
-
+			Led_Off(LED_BLUE_UP);
 		}
 		
 		if(!PButt_Press(PBUTT_UP) && rub_upPress_v == 1 && rub_countU_man < 50)
@@ -134,37 +135,9 @@ void task1_Pb_Up(void){    			//Valid Push Button Up
 		if(rub_countU_man == 50 && !PButt_Press(PBUTT_UP))//up manual
 		{
 			rsb_Bttn = 'u';
-			//rub_countD_man = 0;
 			rub_bandU_m = 1;
-			
-			//rub_upPress_v = 0;
+			Led_Off(LED_BLUE_UP);
 		}
-
-	/*if( !PButt_Press(PBUTT_UP) && rub_upPress == 1)//Verify after 10 ms if the button is still pressed to validate the action
-	{
-		rub_upPress_v = 1;
-		rub_upPress = 0;//Clean the own flag
-		rub_downPress_v = 0;
-	}
-	else if( !PButt_Press(PBUTT_UP) )
-	{
-		rub_upPress = 1;
-		rub_downPress = 0;//make sure the other valid press doesn´t count on machine states
-	}
-	if(rub_countU_man == 50 && !PButt_Press(PBUTT_UP))
-	{
-		rsb_Bttn = 'u';
-		rub_countU_man = 0;
-		rub_upPress_v = 0;
-	}
-	if(rub_upPress_v == 1 && PButt_Press(PBUTT_UP))
-	{
-		rub_upPress_v = 0;
-		rub_countU_man++;
-		rsb_Bttn = 'b';
-
-	}
-	*/
 
 }
 
@@ -173,7 +146,7 @@ void task2_Pb_Down(void){   		//Valid Push Button Down
 	{
 		rub_downPress_v = 1;
 		rub_downPress = 0;
-		//rub_upPress_v = 0;
+		
 	}
 	else if( !PButt_Press(PBUTT_DOWN) && rub_antipPress_v == 0)
 	{
@@ -188,9 +161,8 @@ void task2_Pb_Down(void){   		//Valid Push Button Down
 	if(rub_downPress_v == 1 && PButt_Press(PBUTT_DOWN) && rub_countD_man < 50 && rub_bandD_m == 0)//down auto
 	{
 		rub_downPress_v = 0;
-		//rub_countD_man++;
 		rsb_Bttn = 'c';
-
+		Led_Off(LED_GREEN_DOWN);
 	}
 	
 	if(!PButt_Press(PBUTT_DOWN) && rub_downPress_v == 1 && rub_countD_man < 50)
@@ -201,10 +173,9 @@ void task2_Pb_Down(void){   		//Valid Push Button Down
 	if(rub_countD_man == 50 && !PButt_Press(PBUTT_DOWN))//down manual
 	{
 		rsb_Bttn = 'd';
-		//rub_countD_man = 0;
 		rub_bandD_m = 1;
+		Led_Off(LED_GREEN_DOWN);
 		
-		//rub_downPress_v = 0;
 	}
 
 	
@@ -218,47 +189,25 @@ void task3_Pb_AntiP(void){    		//Valid Push Button Antipinch
 			rub_antipPress_v = 1;
 			rub_antipPress = 0;
 			rsb_Bttn = 'a';
-			//rub_upPress_v = 0;
+			Led_Off(LED_GREEN_DOWN);
+			Led_On(LED_BLUE_UP);
 		}
 		else if( !PButt_Press(PBUTT_APINCH) )
 		{
 			rub_antipPress = 1;
-			
-			/* make sure the other valid press doesn´t count on machine states*/
-			//rub_upPress = 0;
 		}
-	/*if( !PButt_Press(PBUTT_DOWN) && rub_antipPress == 1)
-	{
-		rub_antipPress_v = 1;
-		rub_downPress_v = 0;
-		rub_upPress_v = 0;
-	}
-	else if( !PButt_Press(PBUTT_APINCH) )
-	{
-		rub_antipPress = 1;
-		
-		
-		rub_downPress = 0; //make sure the other valid press doesn´t count on machine states
-		rub_upPress = 0;
-	}
-*/
 }
 
 void task4_State_Machine(void){     //Task 4
 	switch (rsb_Bttn) {
 		case 'u'://up 
-			/*
-			if(rsb_Led >= 0)
+			
+			if(rub_antipPress_v == 1)
 			{
-				Led_On(rsb_Led);
-				rsb_Led--;
-				rsb_CountMs = 0;
-				if(rsb_Led >= 0)
-				{
-					rub_upPress_v = 0;
-				}
-			}*/
-			if(rsb_Led >= 0 && !PButt_Press(PBUTT_UP))////?
+				rsb_Bttn = 'a';
+				break;
+			}
+			if(rsb_Led >= 0 && !PButt_Press(PBUTT_UP) &&  rub_antipPress_v == 0)////?
 			{
 				Led_On(rsb_Led);
 				if(rsb_Led != 0)
@@ -273,21 +222,13 @@ void task4_State_Machine(void){     //Task 4
 				rub_bandU_m = 0;
 				rub_upPress_v = 0;
 				rub_countU_man = 0;
+				Led_On(LED_BLUE_UP);
 			}
+			
 			break;
 		case 'd'://down 
-			//if(rsb_CountMs == 0)
-			//{
-				//Led_Off(rsb_Led);
-				//rsb_Led++;
-			//}
-			//if(rsb_CountMs < 4)
-			//{
-				//rsb_CountMs++;
-			//}
-			//else
-			//{
-			if(rsb_Led <= 9 && !PButt_Press(PBUTT_DOWN))
+			
+			if(rsb_Led <= 9 && !PButt_Press(PBUTT_DOWN) && rub_antipPress_v == 0)
 			{
 				Led_Off(rsb_Led);
 				if(rsb_Led != 9)
@@ -302,18 +243,14 @@ void task4_State_Machine(void){     //Task 4
 				rub_bandD_m = 0;
 				rub_downPress_v = 0;
 				rub_countD_man = 0;
+				Led_On(LED_GREEN_DOWN);	
 			}
-				
+			
 			//}
 			
 			break;
 		case 'b'://up auto
-			/*if(rsb_Led >= 0)
-			{
-				Led_On(rsb_Led);
-				rsb_Led--;
-				rsb_CountMs = 0;
-			}*/
+			
 			if(rsb_Led >= 0 /*&& PButt_Press(PBUTT_UP)*/)
 			{
 				Led_On(rsb_Led);
@@ -326,11 +263,13 @@ void task4_State_Machine(void){     //Task 4
 				if(rsb_Led == 0)
 				{
 					rub_upPress_v = 0;
+					Led_On(LED_BLUE_UP);
 				}
 			}
-
+			
 			break;
 		case 'c'://down auto
+			
 			if(rsb_Led <= 9 /*&& PButt_Press(PBUTT_DOWN)*/)
 			{
 				Led_Off(rsb_Led);
@@ -343,23 +282,41 @@ void task4_State_Machine(void){     //Task 4
 				if(rsb_Led == 9)
 				{
 					rub_downPress_v = 0;
+					
 				}
+			}
+			if(rsb_Led == 9)
+			{
+				Led_On(LED_GREEN_DOWN);
 			}
 
 			
 			break;
 		case 'a'://anti pinch
-			rsb_Bttn = 0;
-			do
+			
+			if(rsb_Led <= 9)
 			{
 				Led_Off(rsb_Led);
-				Restart_STM(TM_400MS);
-				while( !Flag_STM(TM_400MS) );
 				rsb_Led++;
-			}while(rsb_Led <= 9);
-			Restart_STM(TM_5S);
-			while( !Flag_STM(TM_5S) );
-			rub_antipPress_v = 0;//borrar la bandera 
+				rsb_Bttn = 'a';
+				Led_Off(LED_GREEN_DOWN);
+				Led_On(LED_BLUE_UP);
+			}
+			else
+			{
+				Led_On(LED_GREEN_DOWN); 
+				if(rub_cont5s <= 11)
+				{
+					rub_cont5s++;
+				}
+				else
+				{
+					rsb_Bttn = 0;
+					rub_cont5s = 0;
+					rub_antipPress_v = 0;//borrar la bandera 
+				}
+			}
+			
 			break;
 		default://Init state - The window is totally close 
 			break;

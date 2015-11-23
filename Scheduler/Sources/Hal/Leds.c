@@ -100,7 +100,7 @@ void Init_Leds(void)
 	}	
 	
 	/* Indicators Leds */
-	for(lub_count = 16; lub_count <= 17; lub_count++)
+	for(lub_count = 68; lub_count <= 69; lub_count++)
 	{
 		SIU.PCR[lub_count].R = 0x0201;
 		SIU.GPDO[lub_count].B.PDO = 1;

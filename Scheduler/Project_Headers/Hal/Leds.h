@@ -60,6 +60,8 @@
 #define LED2 69
 #define LED3 70
 #define LED4 71
+#define LED_GREEN_DOWN 68
+#define LED_BLUE_UP 69
 
 /* Exported Variables */
 /*============================================================================*/
